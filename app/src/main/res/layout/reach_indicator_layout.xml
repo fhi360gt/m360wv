@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/collect360"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".02">
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/bandera"
+            android:layout_gravity="right"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    // ******************* INDICATOR: OFICIAL SCHOOL DAYS *****************
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".95"
+        android:id="@+id/fl_part1"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="16dp"
+            android:nestedScrollingEnabled="true"
+            android:visibility="visible"
+            android:clickable="true"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="match_parent"
+                    android:textColor="#ff0d0d0d"
+                    android:text="Titulo"
+                    android:id="@+id/tvindicator"
+                    android:paddingLeft="16dp"
+                    android:textSize="@dimen/fontTitle"
+                    android:gravity="center_vertical"
+                    android:singleLine="false" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".35">
+                <ListView
+                    android:id="@+id/lvResult"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="match_parent">
+                </ListView>
+            </LinearLayout>
+            <View
+                android:layout_width="5dp"
+                android:layout_height="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    // ******************* INDICATOR: OFICIAL SCHOOL LENGTH *****************
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".95"
+        android:id="@+id/fl_part2"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="16dp"
+            android:nestedScrollingEnabled="true"
+            android:visibility="visible"
+            android:clickable="true"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="match_parent"
+                    android:textColor="#ff0d0d0d"
+                    android:text="Titulo"
+                    android:id="@+id/tvindicator2"
+                    android:paddingLeft="16dp"
+                    android:textSize="@dimen/fontTitle"
+                    android:gravity="center_vertical"
+                    android:singleLine="false" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".35">
+                <ListView
+                    android:id="@+id/lvResult2"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="match_parent">
+                </ListView>
+            </LinearLayout>
+            <View
+                android:layout_width="5dp"
+                android:layout_height="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    // ******************* INDICATOR: LITERACY CLASSES PER WEEK *****************
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".95"
+        android:id="@+id/fl_part3"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="16dp"
+            android:nestedScrollingEnabled="true"
+            android:visibility="visible"
+            android:clickable="true"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="match_parent"
+                    android:textColor="#ff0d0d0d"
+                    android:text="Titulo"
+                    android:id="@+id/tvindicator3"
+                    android:paddingLeft="16dp"
+                    android:textSize="@dimen/fontTitle"
+                    android:gravity="center_vertical"
+                    android:singleLine="false" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".35">
+                <ListView
+                    android:id="@+id/lvResult3"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="match_parent">
+                </ListView>
+            </LinearLayout>
+            <View
+                android:layout_width="5dp"
+                android:layout_height="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    // ******************* INDICATOR: OFFICIAL CLASS TIME *****************
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".95"
+        android:id="@+id/fl_part4"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="16dp"
+            android:nestedScrollingEnabled="true"
+            android:visibility="visible"
+            android:clickable="true"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="match_parent"
+                    android:textColor="#ff0d0d0d"
+                    android:text="Titulo"
+                    android:id="@+id/tvindicator4"
+                    android:paddingLeft="16dp"
+                    android:textSize="@dimen/fontTitle"
+                    android:gravity="center_vertical"
+                    android:singleLine="false" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".35">
+                <ListView
+                    android:id="@+id/lvResult4"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="match_parent">
+                </ListView>
+            </LinearLayout>
+            <View
+                android:layout_width="5dp"
+                android:layout_height="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".08"
+        android:paddingLeft="15dp"
+        android:weightSum="6"
+        android:gravity="center_horizontal">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_back"
+            android:src="@drawable/prev"
+            android:background="#00faf4f4"
+            android:layout_gravity="center_vertical" />
+
+        <View
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.6"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_next"
+            android:src="@drawable/next"
+            android:background="#00faf4f4"
+            android:layout_gravity="center_vertical"
+            android:visibility="visible"
+            android:focusable="false" />
+
+        <View
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.6"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_exit"
+            android:src="@drawable/exit"
+            android:background="#00faf4f4"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+</LinearLayout>

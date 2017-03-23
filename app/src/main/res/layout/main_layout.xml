@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="@drawable/collect360"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".15"/>
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/bandera"
+            android:layout_gravity="right" />
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".25"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/OLT"
+            android:text="School Observation"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_otl"
+            />
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".3"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/LitScan"
+            android:text="Literacy"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_litscan"
+            android:autoText="true" />
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".3"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/Health"
+            android:text="Health"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_health"/>
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".3"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/Composite"
+            android:text="Composite"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_composite"/>
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".3"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/Dashboard"
+            android:text="Dashboard"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_dashboard"/>
+        <LinearLayout
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:paddingBottom="40dp"
+            android:layout_weight="2"
+            android:gravity="bottom"
+            android:background="#626262">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:id="@+id/button_back"
+                android:gravity="bottom"
+                android:autoText="false"
+                android:background="@drawable/button_back"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/fontOptions"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/loading"
+                android:gravity="center"
+                android:background="@drawable/syncbtn"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:visibility="visible"
+                android:enabled="true" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

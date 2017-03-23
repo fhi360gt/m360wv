@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="@drawable/collect360"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.3"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1.85"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btnSchoolObservation"
+            android:text="Fidelity tool"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontCollectOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_otl"
+            />
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".2"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btnSchoolDirectorInterview"
+            android:text="Pre-Primary Education"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontCollectOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_otl"/>
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".2"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btnTeacherInterview"
+            android:text="Primary Schools"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontCollectOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_otl"/>
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".2"/>
+        <TextView
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/btnClassroomObservation"
+        android:text="Secondary Schools"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/fontCollectOptions"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/button_otl"/>
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".2"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btnSESI"
+            android:text="School Infrastructure"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontCollectOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_otl"/>
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".2"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btnSERF"
+            android:text="Resource Funds"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontCollectOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_otl"/>
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".2"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btnSEMTS"
+            android:text="Management and Teaching Staff"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontCollectOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_otl"/>
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".2"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btnSESC"
+            android:text="Summary Counts"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/fontCollectOptions"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/button_otl"/>
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_back"
+            android:background="@drawable/button_back"
+            android:textSize="@dimen/fontOptions"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:text="Back"
+            android:layout_weight=".7"
+            android:paddingLeft="15dp" />
+    </LinearLayout>
+
+</LinearLayout>

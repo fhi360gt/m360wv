@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:visibility="visible"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#5f5f5f"
+        android:id="@+id/linearLayout22"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/SIS"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_sistz_vrs"
+            android:layout_weight=".03" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/SIS0"
+            android:textColor="#F47321"
+            android:textSize="26dp"
+            android:textStyle="italic|bold"
+            android:layout_marginLeft="1dp"
+            android:id="@+id/tv_sistz_vrs0"
+            android:layout_weight=".075" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/SIS1"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_sistz_vrs1"
+            android:layout_weight=".895" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".15"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Health Services Report "
+                android:textColor="#F47321"
+                android:id="@+id/tv_reach_pg1"
+                android:textSize="27sp"
+                android:gravity="center" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".75"
+            android:weightSum="1">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".15" />
+
+            <ListView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/lv_show_indicator"
+                android:layout_weight=".7" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".15" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".1"
+            android:weightSum="1"
+            android:gravity="center_horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2" />
+
+            <TextView
+                android:text="@string/str_swipe_u_finger"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:layout_weight=".6"
+                android:textSize="22sp"
+                android:gravity="center_horizontal" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!--style="?android:attr/progressBarStyleHorizontal"-->
+
+</LinearLayout>

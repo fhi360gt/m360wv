@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">m360 WV 2.0</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="SIS0">360</string>
+    <string name="SIS">m</string>
+    <string name="SIS1">On Site Data Processing and Visualization 2.0</string>
+    <string name="str_m_tv1">Collect</string>
+    <string name="str_m_tv2">Analytics</string>
+    <string name="str_m_tv3">Reports</string>
+    <string name="str_m_tv4">LITERACY BOOST</string>
+    <string name="str_m_tv5">REACH</string>
+    <string name="str_m_tv6">LITERACY BOOST \n Indicators</string>
+    <string name="str_m_tv7">REACH \n Indicators</string>
+    <string name="str_m_tv1001">School \n Management</string>
+    <string name="str_m_tv1002">Literacy Environment</string>
+    <string name="str_m_tv1003">WASH</string>
+    <string name="str_m_tv1004">Nutrition</string>
+    <string name="str_m_tv1005">Health</string>
+    <string name="str_school_list">School/Camp List</string>
+    <string name="str_no_information">There is no information in the forms</string>
+    <string name="str_swipe_u_finger">SWIPE YOUR FINGER TO MOVE FORWARD OR BACKWARD</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>

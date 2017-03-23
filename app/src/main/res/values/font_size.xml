@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fontOptions">25sp</dimen>
+    <dimen name="fontCollectOptions">18sp</dimen>
+    <dimen name="fontTitle">20sp</dimen>
+    <dimen name="textTable">15sp</dimen>
+    <dimen name="legendTitle">5sp</dimen>
+    <dimen name="legendTitle2">4sp</dimen>
+    <dimen name="fontSelect">15sp</dimen>
+</resources>

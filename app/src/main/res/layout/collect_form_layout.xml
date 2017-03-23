@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#FFFFFF">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#5f5f5f"
+        android:id="@+id/linearLayout22"
+        android:gravity="center_vertical"
+        android:layout_weight=".1"
+        android:weightSum="1"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/SIS"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_sistz_vrs"
+            android:layout_weight=".03" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/SIS0"
+            android:textColor="#F47321"
+            android:textSize="26dp"
+            android:textStyle="italic|bold"
+            android:layout_marginLeft="1dp"
+            android:id="@+id/tv_sistz_vrs0"
+            android:layout_weight=".075" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/SIS1"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_sistz_vrs1"
+            android:layout_weight=".75" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight=".8">
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/tv_groupIndicator"
+            android:textColor="#ff080808"
+            android:textSize="24dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".345"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="70dp"
+            android:paddingRight="70dp">
+
+            <ListView
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listIndicator" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
