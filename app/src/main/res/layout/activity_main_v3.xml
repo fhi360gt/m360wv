@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/activity_controller"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <!-- Side navigation drawer UI -->
+    <ExpandableListView
+        android:id="@+id/navList"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start"
+        android:dividerHeight="50dp"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"/>
+
+</android.support.v4.widget.DrawerLayout>
