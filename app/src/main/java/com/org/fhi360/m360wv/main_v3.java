@@ -21,11 +21,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -39,6 +39,7 @@ import com.org.fhi360.m360wv.utils.CopyAssetDBUtility;
 import com.org.fhi360.m360wv.utils.JSONParser2DB_new;
 import com.org.fhi360.m360wv.utils.XMLParserInsertInformation;
 import com.org.fhi360.m360wv.utils.XMLParserschoolcode;
+import com.org.fhi360.m360wv.utils_menu.ExpandableListOptionAdapter;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -56,7 +57,7 @@ import static android.view.View.GONE;
 /**
  * Created by Sergio on 8/23/2016.
  */
-public class main_v3 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class main_v3 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExpandableListView.OnChildClickListener {
 
     private final static String FORM_URI = "content://org.odk.collect.android.provider.odk.forms/forms/";
     private DBFormsUtils conn;
@@ -76,7 +77,7 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
     public static final ArrayList<String> SchoolsCode = new ArrayList<String>();
     public static final ArrayList<String> listSchools = new ArrayList<String>();
 
-    ExpandableListAdapter listAdapter;
+    //ExpandableListAdapter listAdapter;
     ExpandableListView navigationmenu;
     ListView lv_schools;
     LinearLayout ll_tab_menu, ll_start, ll_select_school;
@@ -86,10 +87,13 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
     View view_Group;
     private DrawerLayout mDrawerLayout;
-    ExpandableListAdapter mMenuAdapter;
+    //ExpandableListAdapter mMenuAdapter;
     ExpandableListView expandableList;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
+
+    ArrayList<String> menuItems = new ArrayList<String> ();
+    ArrayList<Object> subMenuItems = new ArrayList<Object> ();
 
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -133,9 +137,13 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
         ll_tab_menu.setVisibility(GONE);
 
         lv_schools = (ListView) findViewById(R.id.lv_schools);
-        navigationmenu = (ExpandableListView) findViewById(R.id.navigationmenu);
+        //navigationmenu = (ExpandableListView) findViewById(R.id.navigationmenu);
 
-        prepareListData();
+        createMenuToExpandableListView();
+        navigationmenu = (ExpandableListView) findViewById(R.id.navigationmenu);
+        navigationmenu.setDividerHeight(2);
+        navigationmenu.setGroupIndicator(null);
+        navigationmenu.setClickable(true);
 
 
         cnAnalytics = new DBAnalyticsUtils(this);
@@ -143,6 +151,14 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
         // Copia las base de datos con información, solo para muestra
         CopyAssetDBUtility.copyDB(this, DB_INDICATORS_NAME);
         CopyAssetDBUtility.copyDB(this, DB_ANALYTICS_NAME);
+
+        ExpandableListOptionAdapter mNewAdapter = new ExpandableListOptionAdapter(menuItems, subMenuItems);
+        mNewAdapter
+                .setInflater(
+                        (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE),
+                        this);
+        navigationmenu.setAdapter(mNewAdapter);
+        navigationmenu.setOnChildClickListener(main_v3.this);
 
         bluetoothAdmin = new BluetoothSPP(this);
         bluetoothAdmin.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() {
@@ -274,143 +290,40 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
         }
     }
 
-    private void validaListData(){
-//        // get the listview
-//        expListView = (ExpandableListView) findViewById(R.id.lvExp);
 
-        //expListView.clearDisappearingChildren();
-
-        // preparing list data
-        prepareListData();
-
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
-
-        // setting list adapter
-        navigationmenu.setAdapter(listAdapter);
-
-
-        // Listview Group click listener
-        navigationmenu.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v,
-                                        int groupPosition, long id) {
-                // Toast.makeText(getApplicationContext(),
-                // "Group Clicked " + listDataHeader.get(groupPosition),
-                // Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
-
-        // Listview Group expanded listener
-        navigationmenu.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        listDataHeader.get(groupPosition) + " Expanded",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Listview Group collasped listener
-        navigationmenu.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        listDataHeader.get(groupPosition) + " Collapsed",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        // Listview on child click listener
-        navigationmenu.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                // TODO Auto-generated method stub
-                Toast.makeText(
-                        getApplicationContext(),
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
-                        .show();
-                return false;
-            }
-        });
-    }
 
         // ******************** Inicia  el navigationmenu para la listaExpandible ****************************
-        private void prepareListData() {
-            listDataHeader = new ArrayList<String>();
-            listDataChild = new HashMap<String, List<String>>();
+        private void createMenuToExpandableListView () {
 
-            // Adding data header
-            listDataHeader.add("menu1");
-            listDataHeader.add("menu2");
-            listDataHeader.add("menu3");
-            listDataHeader.add("menu4");
-            listDataHeader.add("menu5");
-            listDataHeader.add("menu6");
-            listDataHeader.add("menu7");
+            menuItems.add("Collect");
+            menuItems.add("Analytics");
+            //menuItems.add("Opcion 3");
 
-            // Adding child data
-            List<String> heading1 = new ArrayList<String>();
-            heading1.add("Submenu");
-            heading1.add("Submenu");
-            heading1.add("Submenu");
+            ArrayList<String> submenu = new ArrayList<String>();
+            submenu.add("Lesson Observation");
+            submenu.add("Reading Camp Observation");
+            submenu.add("School Director Interview");
+            submenu.add("Class Observation");
+            submenu.add("School Observation 1");
+            submenu.add("School Observation 2");
+            submenu.add("Teacher Interview");
+            subMenuItems.add(submenu);
 
-            List<String> heading2 = new ArrayList<String>();
-            heading2.add("Submenu");
-            heading2.add("Submenu");
-            heading2.add("Submenu");
-            heading2.add("Submenu");
+            submenu = new ArrayList<String>();
+            submenu.add("Literacy Boost Campo");
+            submenu.add("Literacy Boost Lesson");
+            submenu.add("REACH Management");
+            submenu.add("REACH Literacy");
+            submenu.add("REACH WASH");
+            submenu.add("REACH Nutition");
+            submenu.add("REACH Heatl");
+            subMenuItems.add(submenu);
 
-            List<String> heading3 = new ArrayList<String>();
-            heading3.add("Submenu");
-            heading3.add("Submenu");
-
-            List<String> heading4 = new ArrayList<String>();
-            heading4.add("Submenu");
-            heading4.add("Submenu");
-
-            List<String> heading5 = new ArrayList<String>();
-            heading5.add("Submenu");
-            heading5.add("Submenu");
-            heading5.add("Submenu");
-
-            List<String> heading6 = new ArrayList<String>();
-            heading6.add("Submenu");
-            heading6.add("Submenu");
-
-            List<String> heading7 = new ArrayList<String>();
-            heading4.add("Submenu");
-            heading4.add("Submenu");
-
-            listDataChild.put(listDataHeader.get(0), heading1);// Header, Child data
-            listDataChild.put(listDataHeader.get(1), heading2);
-            listDataChild.put(listDataHeader.get(2), heading3);
-            listDataChild.put(listDataHeader.get(3), heading4);
-            listDataChild.put(listDataHeader.get(4), heading5);
-            listDataChild.put(listDataHeader.get(5), heading6);
-            listDataChild.put(listDataHeader.get(6), heading7);
-        }
-
-        private void setupDrawerContent(NavigationView navigationView) {
-            navigationView.setNavigationItemSelectedListener(
-                    new NavigationView.OnNavigationItemSelectedListener() {
-                        @Override
-                        public boolean onNavigationItemSelected(MenuItem menuItem) {
-                            menuItem.setChecked(true);
-                            mDrawerLayout.closeDrawers();
-                            return true;
-                        }
-                    });
+//            submenu = new ArrayList<String>();
+//            submenu.add("Subopcion 3-1");
+//            submenu.add("Subopcion 3-2");
+//            submenu.add("Subopcion 3-3");
+//            subMenuItems.add(submenu);
         }
 
         // ******************** Termina el navigationmenu para la listaExpandible ****************************
@@ -680,5 +593,59 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
     }
 
 
+    @Override
+    public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+        if (i==0) {Toast.makeText(main_v3.this, "Collect...", Toast.LENGTH_SHORT).show();}
+        if (i==0 && i1==0) {openFormId(conn.getFormId("WV_Boost_Lesson"));}
+        if (i==0 && i1==1) {openFormId(conn.getFormId("WV_Boost_Camp"));}
+        if (i==0 && i1==2) {openFormId(conn.getFormId("WV_REACH_Director"));}
+        if (i==0 && i1==3) {openFormId(conn.getFormId("WV_REACH_Class"));}
+        if (i==0 && i1==4) {openFormId(conn.getFormId("WV_REACH_School_1"));}
+        if (i==0 && i1==5) {openFormId(conn.getFormId("WV_REACH_School_2"));}
+        if (i==0 && i1==6) {openFormId(conn.getFormId("WV_REACH_Teacher"));}
 
+        if (i==1 && i1==0) {
+            ll_start.setVisibility(GONE);
+            //ll_tab_menu.setVisibility(View.VISIBLE);
+            try {
+                dbConection();
+                getSchools();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            }
+            ll_select_school.setVisibility(View.VISIBLE);
+//            Intent intent66 = new Intent(main_v3.this, Camp_pg_bl_0.class);
+//            startActivity(intent66);
+        }
+        if (i==1 && i1==1) {
+//            Intent intent55 = new Intent(main_v3.this, Literacy_pg_bl_0.class);
+//            startActivity(intent55);
+        }
+        if (i==1 && i1==2) {
+
+            Intent intent00 = new Intent(main_v3.this, Reach_pg_sm_0.class);
+            startActivity(intent00);
+        }
+        if (i==1 && i1==3) {
+            Intent intent11 = new Intent(main_v3.this, Reach_pg_le_0.class);
+            startActivity(intent11);
+        }
+        if (i==1 && i1==4) {
+            Intent intent22 = new Intent(main_v3.this, Reach_pg_we_0.class);
+            startActivity(intent22);
+        }
+        if (i==1 && i1==5) {
+            Intent intent33 = new Intent(main_v3.this, Reach_pg_nu_0.class);
+            startActivity(intent33);
+        }
+        if (i==1 && i1==6) {
+            Intent intent44 = new Intent(main_v3.this, Reach_pg_he_0.class);
+            startActivity(intent44);
+        }
+
+
+        return true;
+    }
 }

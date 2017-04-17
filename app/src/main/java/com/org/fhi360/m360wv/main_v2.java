@@ -136,7 +136,7 @@ public class main_v2 extends AppCompatActivity implements NavigationView.OnNavig
         ll_tab_menu.setVisibility(GONE);
 
         lv_schools = (ListView) findViewById(R.id.lv_schools);
-        navigationmenu = (ExpandableListView) findViewById(R.id.navigationmenu);
+        //navigationmenu = (ExpandableListView) findViewById(R.id.navigationmenu);
 
         prepareListData();
 

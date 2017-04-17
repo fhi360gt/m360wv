@@ -39,7 +39,7 @@ public class NavigationViewActivity extends AppCompatActivity {
         ab.setHomeAsUpIndicator(android.R.drawable.ic_menu_add);
         ab.setDisplayHomeAsUpEnabled(true);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        expandableList = (ExpandableListView) findViewById(R.id.navigationmenu);
+        //expandableList = (ExpandableListView) findViewById(R.id.navigationmenu);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         if (navigationView != null) {
