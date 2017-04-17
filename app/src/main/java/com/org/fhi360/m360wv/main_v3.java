@@ -32,6 +32,7 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+import com.org.fhi360.m360wv.data.ExpandableItemMenu;
 import com.org.fhi360.m360wv.mysql.Conexion;
 import com.org.fhi360.m360wv.mysql.DBAnalyticsUtils;
 import com.org.fhi360.m360wv.mysql.DBFormsUtils;
@@ -293,30 +294,29 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
 
         // ******************** Inicia  el navigationmenu para la listaExpandible ****************************
-        private void createMenuToExpandableListView () {
-
+        private void createMenuToExpandableListView() {
             menuItems.add("Collect");
             menuItems.add("Analytics");
             //menuItems.add("Opcion 3");
 
-            ArrayList<String> submenu = new ArrayList<String>();
-            submenu.add("Lesson Observation");
-            submenu.add("Reading Camp Observation");
-            submenu.add("School Director Interview");
-            submenu.add("Class Observation");
-            submenu.add("School Observation 1");
-            submenu.add("School Observation 2");
-            submenu.add("Teacher Interview");
+            ArrayList<ExpandableItemMenu> submenu = new ArrayList<ExpandableItemMenu>();
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Lesson Observation"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Reading Camp Observation"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "School Director Interview"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Class Observation"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "School Observation 1"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "School Observation 2"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Teacher Interview"));
             subMenuItems.add(submenu);
 
-            submenu = new ArrayList<String>();
-            submenu.add("Literacy Boost Campo");
-            submenu.add("Literacy Boost Lesson");
-            submenu.add("REACH Management");
-            submenu.add("REACH Literacy");
-            submenu.add("REACH WASH");
-            submenu.add("REACH Nutition");
-            submenu.add("REACH Heatl");
+            submenu = new  ArrayList<ExpandableItemMenu>();
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Literacy Boost Campo"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Literacy Boost Lesson"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "REACH Management"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "REACH Literacy"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "REACH WASH"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "REACH Nutition"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "REACH Heatl"));
             subMenuItems.add(submenu);
 
 //            submenu = new ArrayList<String>();

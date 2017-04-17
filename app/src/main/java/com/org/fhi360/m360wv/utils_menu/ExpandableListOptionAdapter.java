@@ -9,15 +9,18 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckedTextView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.org.fhi360.m360wv.R;
+import com.org.fhi360.m360wv.data.ExpandableItemMenu;
 
 @SuppressWarnings("unchecked")
 public class ExpandableListOptionAdapter extends BaseExpandableListAdapter {
 
-    public ArrayList<String> groupItem, tempChild;
+    public ArrayList<String> groupItem;
+    public ArrayList<ExpandableItemMenu> tempChild;
     public ArrayList<Object> Childtem = new ArrayList<Object>();
     public LayoutInflater minflater;
     public Activity activity;
@@ -45,14 +48,16 @@ public class ExpandableListOptionAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        tempChild = (ArrayList<String>) Childtem.get(groupPosition);
+        tempChild = (ArrayList<ExpandableItemMenu>) Childtem.get(groupPosition);
         TextView text = null;
+        ImageView image = null;
         if (convertView == null) {
             convertView = minflater.inflate(R.layout.expandable_list_submenu_row_layout, null);
         }
         text = (TextView) convertView.findViewById(R.id.txtSubMenu);
-        text.setText(tempChild.get(childPosition));
-
+        image = (ImageView) convertView.findViewById(R.id.childImage);
+         text.setText(tempChild.get(childPosition).getText());
+        image.setImageResource(tempChild.get(childPosition).getImage());
         return convertView;
     }
 
