@@ -19,13 +19,13 @@ import com.org.fhi360.m360wv.data.ExpandableItemMenu;
 @SuppressWarnings("unchecked")
 public class ExpandableListOptionAdapter extends BaseExpandableListAdapter {
 
-    public ArrayList<String> groupItem;
+    public ArrayList<ExpandableItemMenu> groupItem;
     public ArrayList<ExpandableItemMenu> tempChild;
     public ArrayList<Object> Childtem = new ArrayList<Object>();
     public LayoutInflater minflater;
     public Activity activity;
 
-    public ExpandableListOptionAdapter(ArrayList<String> grList, ArrayList<Object> childItem) {
+    public ExpandableListOptionAdapter(ArrayList<ExpandableItemMenu> grList, ArrayList<Object> childItem) {
         groupItem = grList;
         this.Childtem = childItem;
     }
@@ -94,11 +94,15 @@ public class ExpandableListOptionAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
+        TextView textMenu;
+        ImageView iconoMenu;
         if (convertView == null) {
             convertView = minflater.inflate(R.layout.expandable_list_menu_row_layout, null);
         }
-        ((CheckedTextView) convertView).setText(groupItem.get(groupPosition));
-        ((CheckedTextView) convertView).setChecked(isExpanded);
+        textMenu = (TextView) convertView.findViewById(R.id.txtMenu);
+        iconoMenu = (ImageView) convertView.findViewById(R.id.menuImage);
+        textMenu.setText(groupItem.get(groupPosition).getText());
+        iconoMenu.setImageResource(groupItem.get(groupPosition).getImage());
         return convertView;
     }
 

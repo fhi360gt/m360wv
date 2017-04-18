@@ -31,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
+import com.org.fhi360.m360wv.R;
 
 import com.org.fhi360.m360wv.data.ExpandableItemMenu;
 import com.org.fhi360.m360wv.mysql.Conexion;
@@ -93,7 +94,7 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
 
-    ArrayList<String> menuItems = new ArrayList<String> ();
+    ArrayList<ExpandableItemMenu> menuItems = new ArrayList<ExpandableItemMenu> ();
     ArrayList<Object> subMenuItems = new ArrayList<Object> ();
 
 
@@ -295,14 +296,14 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
         // ******************** Inicia  el navigationmenu para la listaExpandible ****************************
         private void createMenuToExpandableListView() {
-            menuItems.add("Collect");
-            menuItems.add("Analytics");
+            menuItems.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "Collect"));
+            menuItems.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "Analytics"));
             //menuItems.add("Opcion 3");
 
             ArrayList<ExpandableItemMenu> submenu = new ArrayList<ExpandableItemMenu>();
             submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Lesson Observation"));
-            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Reading Camp Observation"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "School Director Interview"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "Reading Camp Observation"));
+        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_lesson_observation, "School Director Interview"));
         submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Class Observation"));
         submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "School Observation 1"));
         submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "School Observation 2"));
