@@ -408,7 +408,8 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
         int id = item.getItemId();
 
         if (id == R.id.nav_form1) {
-            openFormId(conn.getFormId("WV_Boost_Lesson"));
+            //openFormId(conn.getFormId("WV_Boost_Lesson"));
+            openFormId(conn.getFormId("WV_LB_Teacher_Observation"));
             // Handle the camera action
 
         }
