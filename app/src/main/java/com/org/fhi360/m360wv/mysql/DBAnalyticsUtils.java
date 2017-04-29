@@ -22,6 +22,7 @@ public class DBAnalyticsUtils {
 
     public static final String TABLE_NAME ="tblindicators";
     public static final String TABLE_NAME_SyncForm ="syncforms";
+    public static final String TABLE_TBLRESULT = "tblresults";
 
     // ************** tblindicators TABLE ****************
     public static final String CN_ID = "id";
@@ -35,6 +36,8 @@ public class DBAnalyticsUtils {
     public static final String CN_ID_SF = "id";
     public static final String CN_Iname = "form_id";
     public static final String CN_Fname = "form_name";
+    // *************** tblresults TABLE *******************
+    public static final String SCHOOL_CODE = "school_code";
 
     private DBAnalyticsHelper dbHelper;
     private Context context;
