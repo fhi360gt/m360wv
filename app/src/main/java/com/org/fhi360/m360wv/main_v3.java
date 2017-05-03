@@ -394,7 +394,7 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intent00 = new Intent(main_v3.this, Reach_pg_sm_0.class);
+            Intent intent00 = new Intent(main_v3.this, SettingsActivity.class);
             startActivity(intent00);
         }
 
@@ -622,8 +622,8 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 //            startActivity(intent66);
         }
         if (i==1 && i1==1) {
-//            Intent intent55 = new Intent(main_v3.this, Literacy_pg_bl_0.class);
-//            startActivity(intent55);
+            Intent intent55 = new Intent(main_v3.this, Literacy_pg_bl_0.class);
+            startActivity(intent55);
         }
         if (i==1 && i1==2) {
 

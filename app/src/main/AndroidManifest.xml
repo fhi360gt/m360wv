@@ -46,6 +46,7 @@
         <activity android:name="com.org.fhi360.m360wv.Literacy_pg_bl_0" android:screenOrientation="portrait"></activity>
         <activity android:name="com.org.fhi360.m360wv.Camp_pg_bl_0" android:screenOrientation="portrait"></activity>
         <activity android:name=".utils_menu.MyExpandableAdapter" />
+        <activity android:name=".SettingsActivity" android:screenOrientation="portrait" />
 
     </application>
 

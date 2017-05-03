@@ -47,6 +47,23 @@ public class DBAnalyticsUtils {
         dbHelper = new DBAnalyticsHelper(context);
     }
 
+    public List<String> getAllSchoolCode (){
+        if (dbHelper == null) {
+            dbHelper = new DBAnalyticsHelper(context);
+        }
+        List<String> arreglo = new ArrayList<String>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String query = "Select school_code, count(*) from tblresults group by school_code";
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            arreglo.add(c.getString(c.getColumnIndex("school_code")));
+            c.moveToNext();
+        }
+        c.close();;
+        db.close();
+        return arreglo;
+    }
     public void deleteIndicators() {
         if (dbHelper==null) {
             dbHelper = new DBAnalyticsHelper(context);
@@ -215,6 +232,7 @@ public class DBAnalyticsUtils {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            /*
             final String createTable = "create table " + TABLE_NAME + " ("
                     + CN_ID + " integer primary key autoincrement,"
                     + CN_INSTRUMENT + " text not null,"
@@ -229,6 +247,7 @@ public class DBAnalyticsUtils {
                     + CN_Iname + " text not null,"
                     + CN_Fname + " text not null);";
             db.execSQL(createTable);
+            */
         }
 
         @Override
