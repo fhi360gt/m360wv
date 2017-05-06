@@ -1,6 +1,8 @@
 
 package com.org.fhi360.m360wv;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,6 +20,8 @@ import com.org.fhi360.m360wv.mysql.Conexion;
 import java.io.File;
 import java.util.ArrayList;
 
+import static com.org.fhi360.m360wv.main.school_code;
+
 /**
  * Created by Sergio, Pablo y Jorge... jajajaaj on 3/1/2016. cambio de pagina.... uso uso del DEDITO
  */
@@ -28,7 +32,8 @@ public class Reach_pg_sm_1 extends Fragment  {
     public static final String STATICS_ROOT = Environment.getExternalStorageDirectory() + File.separator + "odk/metadata";
     ListView lv_show_indicadores;
     ArrayList<String> indicadores;
-
+    SharedPreferences p;
+    String school_code;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +42,9 @@ public class Reach_pg_sm_1 extends Fragment  {
         LinearLayout mLinearLayout = (LinearLayout) inflater.inflate(R.layout.reach_pg_sm_1, container, false);
 
         lv_show_indicadores = (ListView) mLinearLayout.findViewById(R.id.lv_show_indicator);
+
+        p = PreferenceManager.getDefaultSharedPreferences(getContext());
+        school_code = p.getString("schoolcode", "");
 
         load_indicadores();
 
@@ -50,8 +58,8 @@ public class Reach_pg_sm_1 extends Fragment  {
 
 
     private void load_indicadores () {
-        String stringFilter="";
-        if (!main_v2.school_selected.equals("")){stringFilter = " AND school_code=\""+main.school_selected+"\""; }
+        String stringFilter=school_code;
+        if (!school_code.equals("")){stringFilter = " AND school_code=\""+school_code+"\""; }
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +

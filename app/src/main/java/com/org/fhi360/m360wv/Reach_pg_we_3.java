@@ -1,10 +1,12 @@
 
 package com.org.fhi360.m360wv;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +30,8 @@ public class Reach_pg_we_3 extends Fragment  {
     public static final String STATICS_ROOT = Environment.getExternalStorageDirectory() + File.separator + "odk/metadata";
     ListView lv_show_indicadores;
     ArrayList<String> indicadores;
-
+    SharedPreferences p;
+    String school_code;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +40,9 @@ public class Reach_pg_we_3 extends Fragment  {
         LinearLayout mLinearLayout = (LinearLayout) inflater.inflate(R.layout.reach_pg_we_3, container, false);
 
         lv_show_indicadores = (ListView) mLinearLayout.findViewById(R.id.lv_show_indicator);
+
+        p = PreferenceManager.getDefaultSharedPreferences(getContext());
+        school_code = p.getString("schoolcode", "");
 
         load_indicadores();
 
@@ -51,7 +57,7 @@ public class Reach_pg_we_3 extends Fragment  {
 
     private void load_indicadores () {
         String stringFilter="";
-        if (!main.school_selected.equals("")){stringFilter = " AND school_code=\""+main.school_selected+"\""; }
+        if (!school_code.equals("")){stringFilter = " AND school_code=\""+school_code+"\""; }
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +

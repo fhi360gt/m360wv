@@ -39,8 +39,8 @@ public class Literacy_pg_bl_0 extends FragmentActivity {
 
         List<Fragment> fragments = new Vector<Fragment>();
         fragments.add(Fragment.instantiate(this, Literacy_pg_bl_1.class.getName()));
-//        fragments.add(Fragment.instantiate(this, Literacy_pg_bl_2.class.getName()));
-//        fragments.add(Fragment.instantiate(this, Literacy_pg_bl_3.class.getName()));
+        fragments.add(Fragment.instantiate(this, Literacy_pg_bl_2.class.getName()));
+        fragments.add(Fragment.instantiate(this, Literacy_pg_bl_3.class.getName()));
 
         this.mPagerAdapter = new CustomPagerAdapter(
                 super.getSupportFragmentManager(), fragments);

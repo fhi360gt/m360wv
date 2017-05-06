@@ -151,8 +151,9 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
         cnAnalytics = new DBAnalyticsUtils(this);
 
         // Copia las base de datos con información, solo para muestra
-        CopyAssetDBUtility.copyDB(this, DB_INDICATORS_NAME);
+        //CopyAssetDBUtility.copyDB(this, DB_INDICATORS_NAME);
         CopyAssetDBUtility.copyDB(this, DB_ANALYTICS_NAME);
+
 
         ExpandableListOptionAdapter mNewAdapter = new ExpandableListOptionAdapter(menuItems, subMenuItems);
         mNewAdapter
@@ -296,28 +297,28 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
         // ******************** Inicia  el navigationmenu para la listaExpandible ****************************
         private void createMenuToExpandableListView() {
-            menuItems.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "Collect"));
-            menuItems.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "Analytics"));
+            menuItems.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Collect"));
+            menuItems.add(new ExpandableItemMenu(R.drawable.ic_menu_analytics, "Analytics"));
             //menuItems.add("Opcion 3");
 
             ArrayList<ExpandableItemMenu> submenu = new ArrayList<ExpandableItemMenu>();
-            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Lesson Observation"));
-            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "Reading Camp Observation"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_lesson_observation, "School Director Interview"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Class Observation"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "School Observation 1"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "School Observation 2"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Teacher Interview"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_lesson_observation, "Lesson Observation"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_readig_observationt, "Reading Camp Observation"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_director_interview, "School Director Interview"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_classroom_observation, "Class Observation"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_school_observation, "School Observation 1"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_school_observation, "School Observation 2"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_director_interview, "Teacher Interview"));
             subMenuItems.add(submenu);
 
             submenu = new  ArrayList<ExpandableItemMenu>();
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Literacy Boost Campo"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "Literacy Boost Lesson"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "REACH Management"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "REACH Literacy"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "REACH WASH"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "REACH Nutition"));
-        submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_collect, "REACH Heatl"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "Literacy Boost Campo"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "Literacy Boost Lesson"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "REACH Management"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "REACH Literacy"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "REACH WASH"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "REACH Nutition"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "REACH Health"));
             subMenuItems.add(submenu);
 
 //            submenu = new ArrayList<String>();
@@ -394,6 +395,17 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            try {
+                /* *
+                Esta es la función que llena la tabla de tblresults, pero no me funciona en esta aplicación, pero en la otra donde tocas el layout si funciona.
+                Sirve para leer los XML del ODK y cargarlos a la tabla tblresults de la bdd Analytics.
+                 */
+                dbConection();
+              } catch (IOException e) {
+                e.printStackTrace();
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            }
             Intent intent00 = new Intent(main_v3.this, SettingsActivity.class);
             startActivity(intent00);
         }
@@ -409,7 +421,7 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
         if (id == R.id.nav_form1) {
             //openFormId(conn.getFormId("WV_Boost_Lesson"));
-            openFormId(conn.getFormId("WV_LB_Teacher_Observation"));
+           // openFormId(conn.getFormId("WV_LB_Teacher_Observation_v2"));
             // Handle the camera action
 
         }
@@ -485,6 +497,7 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
     public void dbConection () throws IOException, XmlPullParserException {
 
+        Toast.makeText(getApplicationContext(), "Sincronizando formularios... ", Toast.LENGTH_SHORT).show();
         macAdr = getMacAddress();
         String formsSync;
         // Conexion to Forms for obtain the table name
@@ -598,28 +611,29 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
         if (i==0) {Toast.makeText(main_v3.this, "Collect...", Toast.LENGTH_SHORT).show();}
-        if (i==0 && i1==0) {openFormId(conn.getFormId("WV_Boost_Lesson"));}
-        if (i==0 && i1==1) {openFormId(conn.getFormId("WV_Boost_Camp"));}
+        if (i==0 && i1==0) {openFormId(conn.getFormId("WV_LB_Teacher_Observation_v2"));}
+        if (i==0 && i1==1) {openFormId(conn.getFormId("WV_Boost_Camp_V2"));}
         if (i==0 && i1==2) {openFormId(conn.getFormId("WV_REACH_Director"));}
         if (i==0 && i1==3) {openFormId(conn.getFormId("WV_REACH_Class"));}
         if (i==0 && i1==4) {openFormId(conn.getFormId("WV_REACH_School_1"));}
         if (i==0 && i1==5) {openFormId(conn.getFormId("WV_REACH_School_2"));}
         if (i==0 && i1==6) {openFormId(conn.getFormId("WV_REACH_Teacher"));}
 
+
         if (i==1 && i1==0) {
-            ll_start.setVisibility(GONE);
-            //ll_tab_menu.setVisibility(View.VISIBLE);
-            try {
-                dbConection();
-                getSchools();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            }
-            ll_select_school.setVisibility(View.VISIBLE);
-//            Intent intent66 = new Intent(main_v3.this, Camp_pg_bl_0.class);
-//            startActivity(intent66);
+//            ll_start.setVisibility(GONE);
+//            //ll_tab_menu.setVisibility(View.VISIBLE);
+//            try {
+//                dbConection();
+//                getSchools();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } catch (XmlPullParserException e) {
+//                e.printStackTrace();
+//            }
+//            ll_select_school.setVisibility(View.VISIBLE);
+            Intent intent66 = new Intent(main_v3.this, Camp_pg_bl_0.class);
+            startActivity(intent66);
         }
         if (i==1 && i1==1) {
             Intent intent55 = new Intent(main_v3.this, Literacy_pg_bl_0.class);
@@ -646,8 +660,6 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
             Intent intent44 = new Intent(main_v3.this, Reach_pg_he_0.class);
             startActivity(intent44);
         }
-
-
         return true;
     }
 }
