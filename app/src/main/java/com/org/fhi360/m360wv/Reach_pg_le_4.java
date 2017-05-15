@@ -61,33 +61,33 @@ public class Reach_pg_le_4 extends Fragment  {
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"No one observes the teacher's reading lessons\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q14\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"No one observes the teacher's reading lessons\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q14\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"No one formally evaluates the teacher's performance\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q15\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"No one formally evaluates the teacher's performance\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q15\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers do not receive ongoing professional support\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q16\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers do not receive ongoing professional support\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q16\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers do not have a designated time set aside to engage in professional development activities\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q17\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers do not have a designated time set aside to engage in professional development activities\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q17\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers have not attended any inservice training or professional development workshops or seminars in the past year\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q18\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers have not attended any inservice training or professional development workshops or seminars in the past year\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q18\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers have not received training from World Vision\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q19\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers have not received training from World Vision\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q19\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers attended professional development workshops, but the content was not about reading instruction\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q23\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers attended professional development workshops, but the content was not about reading instruction\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q23\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers would like more training on teaching techniques\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q24\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Teachers would like more training on teaching techniques\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q24\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers would like more training on classroom management\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q24\" AND CAST(result AS INTEGER) = 2 "+  stringFilter + "\n" +
+                "SELECT \"Teachers would like more training on classroom management\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q24\" AND CAST(result AS INTEGER) = 2 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers would like more training on language skills\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q24\" AND CAST(result AS INTEGER) = 3 "+  stringFilter + "\n" +
+                "SELECT \"Teachers would like more training on language skills\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q24\" AND CAST(result AS INTEGER) = 3 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers would like more training on reading skills\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q24\" AND CAST(result AS INTEGER) = 4 "+  stringFilter + "\n" +
+                "SELECT \"Teachers would like more training on reading skills\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q24\" AND CAST(result AS INTEGER) = 4 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers do not have time during the school week to work on lesson planning and preparation\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q33\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers do not have time during the school week to work on lesson planning and preparation\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q33\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers do not work with other teachers on lesson plans\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q34\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers do not work with other teachers on lesson plans\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q34\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers have not received any training related to student assessment\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q60\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers have not received any training related to student assessment\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q60\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 ")   GROUP BY indicator ORDER BY indicator";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);

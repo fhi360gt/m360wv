@@ -61,25 +61,25 @@ public class Reach_pg_we_2 extends Fragment  {
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"School grounds are not clean and well-maintained\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_1\" AND var_form = \"q11\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School grounds are not clean and well-maintained\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[4].toString() + "\" AND var_form = \"q11\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not have a garbage disposal pit\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q48\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not have a garbage disposal pit\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q48\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Garbage is disposed too close to the food preparation area\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q50\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Garbage is disposed too close to the food preparation area\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q50\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not have any hand washing facilities\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q24\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not have any hand washing facilities\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q24\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Hand washing facility is not close to the latrines\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q26\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Hand washing facility is not close to the latrines\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q26\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"No reminder for hand washing near the latrine\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q27\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"No reminder for hand washing near the latrine\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q27\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"No soap for students to wash their hands\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q28\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"No soap for students to wash their hands\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q28\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students do not wash their hands after using the toilet\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q83\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students do not wash their hands after using the toilet\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q83\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students do not wash their hands before eating\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q84\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students do not wash their hands before eating\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q84\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"No WASH club for students\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q93\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"No WASH club for students\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q93\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 ")   GROUP BY indicator ORDER BY indicator";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);

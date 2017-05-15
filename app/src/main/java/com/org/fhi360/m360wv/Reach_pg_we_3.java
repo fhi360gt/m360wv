@@ -61,13 +61,13 @@ public class Reach_pg_we_3 extends Fragment  {
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"School does not have drinking water for students\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q10\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not have drinking water for students\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q10\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Drinking water is not available in classrooms\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q14\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Drinking water is not available in classrooms\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q14\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Drinking water is not treated\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q91\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Drinking water is not treated\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q91\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students do not bring drinking water from home\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q87\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students do not bring drinking water from home\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q87\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 ")   GROUP BY indicator ORDER BY indicator";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);

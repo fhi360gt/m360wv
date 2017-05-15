@@ -61,25 +61,25 @@ public class Reach_pg_le_5 extends Fragment  {
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"Teachers do not feel aware of student progress in the classroom throughout the school year\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q52\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers do not feel aware of student progress in the classroom throughout the school year\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q52\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers do not keep mental track of student progress (through circulating the room, listening to students' answers in large groups, small groups or individually)\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q53\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers do not keep mental track of student progress (through circulating the room, listening to students' answers in large groups, small groups or individually)\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q53\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers do not grade classroom exercises as a whole group (e.g. students exchange papers and review one another's work)\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q54\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers do not grade classroom exercises as a whole group (e.g. students exchange papers and review one another's work)\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q54\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers do not collect students' work for later review\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q55\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers do not collect students' work for later review\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q55\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers do not record student progress in a notebook or gradebook\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q56\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers do not record student progress in a notebook or gradebook\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q56\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers do not provide extra support to students who appear to be struggling\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q57\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers do not provide extra support to students who appear to be struggling\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q57\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers have not received any training related to student assessment\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q60\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Teachers have not received any training related to student assessment\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q60\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students are not given formal exams to assess their reading abilities\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q59\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students are not given formal exams to assess their reading abilities\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q59\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Student progress is not reported to parents\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q58\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Student progress is not reported to parents\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q58\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Parents do not have access to the results of reading assessments\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q148\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Parents do not have access to the results of reading assessments\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q148\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 ")   GROUP BY indicator ORDER BY indicator";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);

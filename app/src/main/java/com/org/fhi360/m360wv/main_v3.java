@@ -20,7 +20,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,18 +28,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TabHost;
 import android.widget.Toast;
-import com.org.fhi360.m360wv.R;
 
 import com.org.fhi360.m360wv.data.ExpandableItemMenu;
 import com.org.fhi360.m360wv.mysql.Conexion;
 import com.org.fhi360.m360wv.mysql.DBAnalyticsUtils;
 import com.org.fhi360.m360wv.mysql.DBFormsUtils;
+import com.org.fhi360.m360wv.mysql.DBInstanceUtils;
 import com.org.fhi360.m360wv.utils.CopyAssetDBUtility;
 import com.org.fhi360.m360wv.utils.JSONParser2DB_new;
-import com.org.fhi360.m360wv.utils.XMLParserInsertInformation;
-import com.org.fhi360.m360wv.utils.XMLParserschoolcode;
 import com.org.fhi360.m360wv.utils_menu.ExpandableListOptionAdapter;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -62,7 +58,7 @@ import static android.view.View.GONE;
 public class main_v3 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExpandableListView.OnChildClickListener {
 
     private final static String FORM_URI = "content://org.odk.collect.android.provider.odk.forms/forms/";
-    private DBFormsUtils conn;
+
     public  static String school_selected ="";
     private final static String DB_INDICATORS_NAME = "indicators.db";
     private final static String DB_ANALYTICS_NAME = "analytics.db"; // esta base de datos se copia temporalmente, solo para mostrar INDICADORES
@@ -72,7 +68,9 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
     public static ContentValues data_ind = new ContentValues();
     public static String[] data_display;
     public int n_ind = 0, contador=0;
+    private DBFormsUtils cnForms;
     private DBAnalyticsUtils cnAnalytics;
+    private DBInstanceUtils cnInstances;
     public static final String STATICS_ROOT = Environment.getExternalStorageDirectory() + File.separator + "odk/metadata";
 
     public static final ArrayList<String> listColum = new ArrayList<String>();
@@ -86,6 +84,14 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
     String[] listaIndicadores = new String[] {"Management","Literacy","WASH","Nutrition","Health", "Lesson", "Camp"};
     String[] GrupoFormularios = new String[] {"Literacy Boost","REACH"};
+    public static String[] listForms = new String[] {"WV_LB_Teacher_Observation_v2","WV_Boost_Camp_V2","WV_REACH_Director","WV_REACH_Class","WV_REACH_School_1", "WV_REACH_School_2", "WV_REACH_Teacher"};
+    // main_v3.listForms[0].toString()  -WV_LB_Teacher_Observation_v2
+    // main_v3.listForms[1].toString()  -WV_Boost_Camp_V2
+    // main_v3.listForms[2].toString()  -WV_REACH_Director
+    // main_v3.listForms[3].toString()  -WV_REACH_Class
+    // main_v3.listForms[4].toString()  -WV_REACH_School_1
+    // main_v3.listForms[5].toString()  -WV_REACH_School_2
+    // main_v3.listForms[6].toString()  -WV_REACH_Teacher
 
     View view_Group;
     private DrawerLayout mDrawerLayout;
@@ -129,7 +135,7 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
         setContentView(R.layout.activity_main_v2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        conn = new DBFormsUtils(this);
+        cnForms = new DBFormsUtils(this);
 
         ll_start = (LinearLayout) findViewById(R.id.ll_start);
         ll_start.setVisibility(View.VISIBLE);
@@ -149,11 +155,20 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
 
         cnAnalytics = new DBAnalyticsUtils(this);
+        cnInstances = new DBInstanceUtils(this);
 
         // Copia las base de datos con información, solo para muestra
         //CopyAssetDBUtility.copyDB(this, DB_INDICATORS_NAME);
         CopyAssetDBUtility.copyDB(this, DB_ANALYTICS_NAME);
 
+
+        try {
+            cnAnalytics.saveAllInstanceResults(cnInstances, cnForms);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
 
         ExpandableListOptionAdapter mNewAdapter = new ExpandableListOptionAdapter(menuItems, subMenuItems);
         mNewAdapter
@@ -184,48 +199,48 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
 
         //setContentView(R.layout.content_main);
-        TabHost tab_menu = (TabHost) findViewById(R.id.tab_main);
-
-        tab_menu.setup();
-
-        TabHost.TabSpec tabSpec1 = tab_menu.newTabSpec("School/camp");
-        tabSpec1.setContent(R.id.tab1);
-        tabSpec1.setIndicator("School \nCamp");
-        tab_menu.addTab(tabSpec1);
-
-        TabHost.TabSpec tabSpec2 = tab_menu.newTabSpec("Management");
-        tabSpec2.setContent(R.id.tab2);
-        tabSpec2.setIndicator("Management");
-        tab_menu.addTab(tabSpec2);
-
-        TabHost.TabSpec tabSpec3 = tab_menu.newTabSpec("Literacy");
-        tabSpec3.setContent(R.id.tab3);
-        tabSpec3.setIndicator("Literacy");
-        tab_menu.addTab(tabSpec3);
-
-        TabHost.TabSpec tabSpec4 = tab_menu.newTabSpec("WASH");
-        tabSpec4.setContent(R.id.tab4);
-        tabSpec4.setIndicator("WASH");
-        tab_menu.addTab(tabSpec4);
-
-        TabHost.TabSpec tabSpec5 = tab_menu.newTabSpec("Nutrition");
-        tabSpec5.setContent(R.id.tab5);
-        tabSpec5.setIndicator("Nutrition");
-        tab_menu.addTab(tabSpec5);
-
-        TabHost.TabSpec tabSpec6 = tab_menu.newTabSpec("Health");
-        tabSpec6.setContent(R.id.tab6);
-        tabSpec6.setIndicator("Health");
-        tab_menu.addTab(tabSpec6);
-
-        tab_menu.setCurrentTab(0);
-
-        tab_menu.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            @Override
-            public void onTabChanged(String tabId) {
-                Log.i("AndroidTabsDemo", "Pulsada pestaña: " + tabId);
-            }
-        });
+//        TabHost tab_menu = (TabHost) findViewById(R.id.tab_main);
+//
+//        tab_menu.setup();
+//
+//        TabHost.TabSpec tabSpec1 = tab_menu.newTabSpec("School/camp");
+//        tabSpec1.setContent(R.id.tab1);
+//        tabSpec1.setIndicator("School \nCamp");
+//        tab_menu.addTab(tabSpec1);
+//
+//        TabHost.TabSpec tabSpec2 = tab_menu.newTabSpec("Management");
+//        tabSpec2.setContent(R.id.tab2);
+//        tabSpec2.setIndicator("Management");
+//        tab_menu.addTab(tabSpec2);
+//
+//        TabHost.TabSpec tabSpec3 = tab_menu.newTabSpec("Literacy");
+//        tabSpec3.setContent(R.id.tab3);
+//        tabSpec3.setIndicator("Literacy");
+//        tab_menu.addTab(tabSpec3);
+//
+//        TabHost.TabSpec tabSpec4 = tab_menu.newTabSpec("WASH");
+//        tabSpec4.setContent(R.id.tab4);
+//        tabSpec4.setIndicator("WASH");
+//        tab_menu.addTab(tabSpec4);
+//
+//        TabHost.TabSpec tabSpec5 = tab_menu.newTabSpec("Nutrition");
+//        tabSpec5.setContent(R.id.tab5);
+//        tabSpec5.setIndicator("Nutrition");
+//        tab_menu.addTab(tabSpec5);
+//
+//        TabHost.TabSpec tabSpec6 = tab_menu.newTabSpec("Health");
+//        tabSpec6.setContent(R.id.tab6);
+//        tabSpec6.setIndicator("Health");
+//        tab_menu.addTab(tabSpec6);
+//
+//        tab_menu.setCurrentTab(0);
+//
+////        tab_menu.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+////            @Override
+////            public void onTabChanged(String tabId) {
+////                Log.i("AndroidTabsDemo", "Pulsada pestaña: " + tabId);
+//  //          }
+//        });
 
 
 
@@ -312,13 +327,13 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
             subMenuItems.add(submenu);
 
             submenu = new  ArrayList<ExpandableItemMenu>();
-            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "Literacy Boost Campo"));
-            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "Literacy Boost Lesson"));
-            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "REACH Management"));
-            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "REACH Literacy"));
-            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "REACH WASH"));
-            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "REACH Nutition"));
-            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_manage, "REACH Health"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_literacy_boost_lesson, "Literacy Boost Campo"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_literacy_boost_lesson, "Literacy Boost Lesson"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_reach_management, "REACH Management"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_reach_literacy, "REACH Literacy"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_reach_wash, "REACH WASH"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_reach_nutrition, "REACH Nutition"));
+            submenu.add(new ExpandableItemMenu(R.drawable.ic_menu_reach_health, "REACH Health"));
             subMenuItems.add(submenu);
 
 //            submenu = new ArrayList<String>();
@@ -395,17 +410,20 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            try {
+
                 /* *
                 Esta es la función que llena la tabla de tblresults, pero no me funciona en esta aplicación, pero en la otra donde tocas el layout si funciona.
                 Sirve para leer los XML del ODK y cargarlos a la tabla tblresults de la bdd Analytics.
                  */
-                dbConection();
-              } catch (IOException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                dbConection();
+//               // getSchools();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } catch (XmlPullParserException e) {
+//                e.printStackTrace();
+//            }
+
             Intent intent00 = new Intent(main_v3.this, SettingsActivity.class);
             startActivity(intent00);
         }
@@ -420,37 +438,37 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
         int id = item.getItemId();
 
         if (id == R.id.nav_form1) {
-            //openFormId(conn.getFormId("WV_Boost_Lesson"));
-           // openFormId(conn.getFormId("WV_LB_Teacher_Observation_v2"));
+            //openFormId(cnForms.getFormId("WV_Boost_Lesson"));
+           // openFormId(cnForms.getFormId("WV_LB_Teacher_Observation_v2"));
             // Handle the camera action
 
         }
         else if (id == R.id.nav_form2) {
-            openFormId(conn.getFormId("WV_Boost_Camp"));
+            openFormId(cnForms.getFormId("WV_Boost_Camp"));
         } else if (id == R.id.nav_form3) {
-            openFormId(conn.getFormId("WV_REACH_Director"));
+            openFormId(cnForms.getFormId("WV_REACH_Director"));
         } else if (id == R.id.nav_form4) {
-            openFormId(conn.getFormId("WV_REACH_Class"));
+            openFormId(cnForms.getFormId("WV_REACH_Class"));
         } else if (id == R.id.nav_form5) {
-            openFormId(conn.getFormId("WV_REACH_School_1"));
+            openFormId(cnForms.getFormId("WV_REACH_School_1"));
         } else if (id == R.id.nav_form6) {
-            openFormId(conn.getFormId("WV_REACH_School_2"));
+            openFormId(cnForms.getFormId("WV_REACH_School_2"));
         } else if (id == R.id.nav_form7) {
-            openFormId(conn.getFormId("WV_REACH_Teacher"));
+            openFormId(cnForms.getFormId("WV_REACH_Teacher"));
     }
         else if (id == R.id.nav_report1) {
 //            Intent intent66 = new Intent(main_v2.this, Camp_pg_bl_0.class);
 //            startActivity(intent66);
             ll_start.setVisibility(GONE);
             //ll_tab_menu.setVisibility(View.VISIBLE);
-            try {
-                dbConection();
-                getSchools();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                dbConection();
+//                getSchools();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } catch (XmlPullParserException e) {
+//                e.printStackTrace();
+//            }
             ll_select_school.setVisibility(View.VISIBLE);
         }
         else if (id == R.id.nav_report2) {
@@ -495,76 +513,8 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
     }
     // Al iniciar la aplicación, activa el bluetooth y la función que recibe el json. Por ahora no se va a necesitar.
 
-    public void dbConection () throws IOException, XmlPullParserException {
-
-        Toast.makeText(getApplicationContext(), "Sincronizando formularios... ", Toast.LENGTH_SHORT).show();
-        macAdr = getMacAddress();
-        String formsSync;
-        // Conexion to Forms for obtain the table name
-        Conexion cnodkforms = new Conexion(getApplicationContext(), STATICS_ROOT + File.separator + "forms.db",null,4);
-        SQLiteDatabase dbodkforms = cnodkforms.getWritableDatabase(); // aqui debe ser solo lectura?
-        Cursor cforms = dbodkforms.rawQuery("SELECT displayName, formFilePath FROM forms WHERE displayName like 'WV%'",null);
-
-        // Conexion each intances to Form List
-        Conexion cnodkintances = new Conexion(getApplicationContext(), STATICS_ROOT + File.separator + "instances.db", null,4);
-        SQLiteDatabase dbodkintances = cnodkintances.getWritableDatabase(); // aqui debe ser solo lectura?
-
-        Conexion cnfhi360 = new Conexion(getApplicationContext(), STATICS_ROOT + File.separator + "analytics.db",null,4);
-        SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
-
-        if (cforms.moveToFirst()) {
-            do {
-                // Show all form in ODK
-                //Toast.makeText(getApplicationContext(), cforms.getString(0), Toast.LENGTH_SHORT).show();
-                xml_form = cforms.getString(0);
-                // Extract all instances and Path (all filled form) from ODK
-                Cursor cintances =  dbodkintances.rawQuery("SELECT instanceFilePath,_id FROM instances where displayName='" + cforms.getString(0) + "'" ,null);
-                if (cintances.moveToFirst()) {
-                    do {
-                        // Show all instances filled in ODK
-                        //Toast.makeText(getApplicationContext(), cintances.getString(0), Toast.LENGTH_SHORT).show();
-
-                        // Mark forms sync
-                        Cursor sftrue = dbfhi360.rawQuery("SELECT count(*) FROM syncforms WHERE form_id="+ cintances.getString(1).toString(),null);
-                        sftrue.moveToFirst();
-                        if (sftrue.getString(0).equals("0")) {
-                            dbfhi360.execSQL("INSERT INTO syncforms(form_id,form_name) VALUES(" + cintances.getString(1).toString() + ",\"" + cintances.getString(0).toString() + "\");");
-                            //InsertFormSycn(cintances.getString(1).toString(),cintances.getString(0).toString());
-                            //if (xml_form.equals("WV_Boost_Lesson")) {
-                            xml_path = cintances.getString(0).toString();
-                            String[] tmp_path = {xml_path};
 
 
-                            XMLParserschoolcode.main(tmp_path);
-                            XMLParserInsertInformation.main(tmp_path);
-                            //if (!jsonSend.isEmpty()) {dbfhi360.execSQL(jsonSend); Toast.makeText(getApplicationContext(), jsonSend, Toast.LENGTH_LONG).show();}
-                            if (listColum.size()>0) {
-                                for (int i=0; i < listColum.size(); i++) {
-                                    dbfhi360.execSQL(listColum.get(i));
-                                }
-                            }
-                            listColum.clear();
-                            //}
-
-                        } sftrue.close();
-
-                    } while ((cintances.moveToNext()));
-                } cintances.close();
-
-            } while (cforms.moveToNext());
-        }
-
-        dbfhi360.close();
-        cnfhi360.close();
-
-        dbodkintances.close();
-        cnodkintances.close();
-
-        cforms.close();
-        dbodkforms.close();
-        cnodkforms.close();
-
-    }
 
     public String getMacAddress() {
         WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -611,13 +561,13 @@ public class main_v3 extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
         if (i==0) {Toast.makeText(main_v3.this, "Collect...", Toast.LENGTH_SHORT).show();}
-        if (i==0 && i1==0) {openFormId(conn.getFormId("WV_LB_Teacher_Observation_v2"));}
-        if (i==0 && i1==1) {openFormId(conn.getFormId("WV_Boost_Camp_V2"));}
-        if (i==0 && i1==2) {openFormId(conn.getFormId("WV_REACH_Director"));}
-        if (i==0 && i1==3) {openFormId(conn.getFormId("WV_REACH_Class"));}
-        if (i==0 && i1==4) {openFormId(conn.getFormId("WV_REACH_School_1"));}
-        if (i==0 && i1==5) {openFormId(conn.getFormId("WV_REACH_School_2"));}
-        if (i==0 && i1==6) {openFormId(conn.getFormId("WV_REACH_Teacher"));}
+        if (i==0 && i1==0) {openFormId(cnForms.getFormId("WV_LB_Teacher_Observation_v2"));}
+        if (i==0 && i1==1) {openFormId(cnForms.getFormId("WV_Boost_Camp_V2"));}
+        if (i==0 && i1==2) {openFormId(cnForms.getFormId("WV_REACH_Director"));}
+        if (i==0 && i1==3) {openFormId(cnForms.getFormId("WV_REACH_Class"));}
+        if (i==0 && i1==4) {openFormId(cnForms.getFormId("WV_REACH_School_1"));}
+        if (i==0 && i1==5) {openFormId(cnForms.getFormId("WV_REACH_School_2"));}
+        if (i==0 && i1==6) {openFormId(cnForms.getFormId("WV_REACH_Teacher"));}
 
 
         if (i==1 && i1==0) {

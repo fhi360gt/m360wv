@@ -53,39 +53,37 @@ public class Reach_pg_he_1 extends Fragment  {
         return mLinearLayout;
     }
 
-
-
     private void load_indicadores () {
         String stringFilter="";
         if (!school_code.equals("")){stringFilter = " AND school_code=\""+school_code+"\""; }
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"School does not have a budget line allocated to health and nutrition services\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q118\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not have a budget line allocated to health and nutrition services\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q118\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: First aid\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q120\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: First aid\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q120\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: Routine/mass deworming\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q121\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: Routine/mass deworming\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q121\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: Deworming based on identified need\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q122\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: Deworming based on identified need\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q122\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: Intermittent malaria prevention\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q123\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: Intermittent malaria prevention\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q123\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: Malaria treatment based on identified need\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q124\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: Malaria treatment based on identified need\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q124\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: ORS for diarrhea\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q125\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: ORS for diarrhea\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q125\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: Iron supplements\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q126\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: Iron supplements\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q126\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: Iodine supplements\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q127\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: Iodine supplements\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q127\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: Vitamin A\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q128\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: Vitamin A\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q128\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: Vision screening & referrals as needed\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q129\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: Vision screening & referrals as needed\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q129\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: Measurements of height & weight\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q130\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: Measurements of height & weight\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q130\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not provide: Referrals to community services for students who are identified as in need of: nutrition support (malnutrition AND obesity), vision correction, or other interventions\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q131\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"School does not provide: Referrals to community services for students who are identified as in need of: nutrition support (malnutrition AND obesity), vision correction, or other interventions\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q131\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 ")   GROUP BY indicator ORDER BY indicator\n";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);

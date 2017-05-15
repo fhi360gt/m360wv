@@ -53,47 +53,45 @@ public class Reach_pg_we_1 extends Fragment  {
         return mLinearLayout;
     }
 
-
-
     private void load_indicadores () {
         String stringFilter="";
         if (!school_code.equals("")){stringFilter = " AND school_code=\""+school_code+"\""; }
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"No latrines for students\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q15\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"No latrines for students\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q15\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"No separate latrines for teachers and students\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q17\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"No separate latrines for teachers and students\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q17\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"No separate latrines for boys and girls\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q18\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"No separate latrines for boys and girls\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q18\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"No door or curtain for privacy\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q19\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"No door or curtain for privacy\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q19\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Latrine door can't be locked for privacy\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q20\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Latrine door can't be locked for privacy\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q20\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"No wiping material available in latrine\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q21\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"No wiping material available in latrine\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q21\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Latrine smells bad\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q22\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Latrine smells bad\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q22\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Feces visible around the school compound\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_2\" AND var_form = \"q23\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Feces visible around the school compound\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[5].toString() + "\" AND var_form = \"q23\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"There is no person assigned to maintaining the toilet facility\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q83\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"There is no person assigned to maintaining the toilet facility\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q83\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"There is no person assigned to cleaning the toilet facility\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q84\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"There is no person assigned to cleaning the toilet facility\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q84\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"There is no budget for the maintenance of the latrine\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q85\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"There is no budget for the maintenance of the latrine\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q85\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students should be allowed to use the latrine when they need to\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q86\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Students should be allowed to use the latrine when they need to\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q86\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Latrines need to be cleaned more frequently\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q87\" AND CAST(result AS INTEGER) > 4 "+  stringFilter + "\n" +
+                "SELECT \"Latrines need to be cleaned more frequently\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q87\" AND CAST(result AS INTEGER) > 4 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Parents can be asked to help clean the latrine\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q146\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Parents can be asked to help clean the latrine\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q146\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students are not allowed to use the toilets during class\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q80\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students are not allowed to use the toilets during class\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q80\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students do not use available toilets\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q81\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students do not use available toilets\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q81\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students defecate or pee in the open\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q82\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Students defecate or pee in the open\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q82\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 ")   GROUP BY indicator ORDER BY indicator";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);

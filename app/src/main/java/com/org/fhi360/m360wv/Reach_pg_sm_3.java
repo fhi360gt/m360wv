@@ -61,29 +61,29 @@ public class Reach_pg_sm_3 extends Fragment  {
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q120\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q120\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q121\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q121\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q122\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q122\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q123\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q123\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Class\" AND var_form = \"q75\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[3].toString() + "\" AND var_form = \"q75\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Class\" AND var_form = \"q76\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[3].toString() + "\" AND var_form = \"q76\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Class\" AND var_form = \"q77\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[3].toString() + "\" AND var_form = \"q77\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Class\" AND var_form = \"q78\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[3].toString() + "\" AND var_form = \"q78\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Class\" AND var_form = \"q75\" AND CAST(result AS INTEGER) > 1 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[3].toString() + "\" AND var_form = \"q75\" AND CAST(result AS INTEGER) > 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Class\" AND var_form = \"q76\" AND CAST(result AS INTEGER) > 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[3].toString() + "\" AND var_form = \"q76\" AND CAST(result AS INTEGER) > 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Class\" AND var_form = \"q77\" AND CAST(result AS INTEGER) > 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[3].toString() + "\" AND var_form = \"q77\" AND CAST(result AS INTEGER) > 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Class\" AND var_form = \"q78\" AND CAST(result AS INTEGER) > 0 "+  stringFilter + "\n" +
+                "SELECT \"Students arrived late\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[3].toString() + "\" AND var_form = \"q78\" AND CAST(result AS INTEGER) > 0 "+  stringFilter + "\n" +
                 ")   GROUP BY indicator ORDER BY indicator";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);

@@ -23,7 +23,7 @@ public class XMLParserInsertInformation {
 
     public static CharSequence cs = "q14 q15";
     public static final String STATICS_ROOT = Environment.getExternalStorageDirectory() + File.separator + "odk/metadata";
-    private final static String DB_ANALYTICS_NAME = "analytics.db"; // esta base de datos se copia temporalmente, solo para mostrar INDICADORES
+    private final static String DB_ANALYTICS_NAME = STATICS_ROOT + File.separator +  "analytics.db"; // esta base de datos se copia temporalmente, solo para mostrar INDICADORES
 
     public static void main (String args[])
             throws XmlPullParserException, IOException
@@ -40,13 +40,13 @@ public class XMLParserInsertInformation {
         //System.out.println(ActivitySelForm.xml_form.replace(".", "_"));
         //String coma = "", tipo = "",  jsonSend =  "{\"" + main.xml_form.replace(".", "_") + "\":[{\"maddress\":\"" + main.macAdr + "\"," , sql="CREATE TABLE IF NOT EXISTS " + main.xml_form.replace(".", "_") + " (";
         //String coma = "", tipo = "",  jsonSend = "", sql1= "INSERT INTO tblresults VALUES(\"" + main. xml_form.replace(".", "_") + "\",\"" + main.app_proyect + "\",\"123456 \"," + "\"Escuela No.1\"," + "\"" + main.macAdr + "\"," , sql="CREATE TABLE IF NOT EXISTS " + main.xml_form.replace(".", "_") + " (";
-        String coma = "", tipo = "",  jsonSend = "", sql="CREATE TABLE IF NOT EXISTS " + main.xml_form.replace(".", "_") + " (";
-        String sql1= "INSERT INTO tblresults VALUES(\"" + main.xml_form.replace(".", "_") + "\",\"" + main.macAdr + "\",\""+main.school_code+"\",";
+        String coma = "", tipo = "",  jsonSend = "", sql="CREATE TABLE IF NOT EXISTS " + args[1].replace(".", "_") + " (";
+        String sql1= "INSERT INTO tblresults VALUES(\"" + args[1].replace(".", "_") + "\",\"" + args[2] + "\",\""+ args[3] +"\",";
         boolean createTable = true;
         //int tagN=0, tagT=0;
 
         // get a reference to the file.
-        String xml_path = main.xml_path;
+        String xml_path = args[0];
         File file = new File(xml_path);
         //File file = new File(Environment.getExternalStorageDirectory() + File.separator +"/odk/instances/TanzaniaGIS_2014-10-28_22-36-39/TanzaniaGIS_2014-10-28_22-36-39.xml");
 
@@ -69,16 +69,16 @@ public class XMLParserInsertInformation {
                 else {
                     //if (main.xml_form.equals("WV_Boost_Lesson")  & tagName.contains(cs) ) {
                     //if (tagName.equals("q14")) {
-                        System.out.println(tagName+" - "+xpp.getText());
-                        main.xml_res = main.xml_res + tagName+" - "+xpp.getText()+"\n";
-                        if (createTable) {
-                            // Adding items to arrayList
-                            //if (isNumeric(xpp.getText())) {tipo = " int";} else {tipo = " text";}
-                            //sql = sql + coma + tagName + tipo;
-                            jsonSend = jsonSend + coma + "\"" + tagName + "\",";
-                            coma = ", ";
-                            //if (tipo.equals(" int")) {ActivityForms.listColum.add(tagName);}  // solo muestra variables numericas
-                            //main.listColum.add(tagName);   // muestra variables numericas y alfanumericas en el LOG
+                    System.out.println(tagName+" - "+xpp.getText());
+                    main.xml_res = main.xml_res + tagName+" - "+xpp.getText()+"\n";
+                    if (createTable) {
+                        // Adding items to arrayList
+                        //if (isNumeric(xpp.getText())) {tipo = " int";} else {tipo = " text";}
+                        //sql = sql + coma + tagName + tipo;
+                        jsonSend = jsonSend + coma + "\"" + tagName + "\",";
+                        coma = ", ";
+                        //if (tipo.equals(" int")) {ActivityForms.listColum.add(tagName);}  // solo muestra variables numericas
+                        //main.listColum.add(tagName);   // muestra variables numericas y alfanumericas en el LOG
                         //}
 
                         // Adding values to recordSet

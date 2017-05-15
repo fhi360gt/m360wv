@@ -53,49 +53,47 @@ public class Reach_pg_le_2 extends Fragment  {
         return mLinearLayout;
     }
 
-
-
     private void load_indicadores () {
         String stringFilter="";
         if (!school_code.equals("")){stringFilter = " AND school_code=\""+school_code+"\""; }
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"There is no school library\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_1\" AND var_form = \"q7\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"There is no school library\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[4].toString() + "\" AND var_form = \"q7\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students were not using the library at the time of the visit\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_1\" AND var_form = \"q8\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"Students were not using the library at the time of the visit\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[4].toString() + "\" AND var_form = \"q8\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"There is no record of books being borrowed\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_1\" AND var_form = \"q9\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"There is no record of books being borrowed\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[4].toString() + "\" AND var_form = \"q9\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
                 "SELECT  IFNULL(ROUND(CAST(a.a as FLOAT)/CAST(b.b as FLOAT)*100,1)  ||  \" Kindergarten students share each available reading textbook\", 0)  AS indicator FROM\n" +
-                "(SELECT \"1\" as ident, SUM(result) AS a  FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q41\" "+  stringFilter + ") AS a\n" +
-                "JOIN( SELECT \"1\" as ident, SUM(result) AS b  FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q29_t\" "+  stringFilter + ") AS b ON a.ident=b.ident \n" +
+                "(SELECT \"1\" as ident, SUM(result) AS a  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q41\" "+  stringFilter + ") AS a\n" +
+                "JOIN( SELECT \"1\" as ident, SUM(result) AS b  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q29_t\" "+  stringFilter + ") AS b ON a.ident=b.ident \n" +
                 "UNION\n" +
                 "SELECT  IFNULL(ROUND(CAST(a.a as FLOAT)/CAST(b.b as FLOAT)*100,1)  ||  \" Primary 1 students share each available reading textbook\",0)  AS indicator FROM\n" +
-                "(SELECT \"1\" as ident, SUM(result) AS a  FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q42\" "+  stringFilter + ") AS a\n" +
-                "JOIN( SELECT \"1\" as ident, SUM(result) AS b  FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q30_t\" "+  stringFilter + ") AS b ON a.ident=b.ident \n" +
+                "(SELECT \"1\" as ident, SUM(result) AS a  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q42\" "+  stringFilter + ") AS a\n" +
+                "JOIN( SELECT \"1\" as ident, SUM(result) AS b  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q30_t\" "+  stringFilter + ") AS b ON a.ident=b.ident \n" +
                 "UNION\n" +
                 "SELECT  IFNULL(ROUND(CAST(a.a as FLOAT)/CAST(b.b as FLOAT)*100,1)  ||  \" Primary 2 students share each available reading textbook\", 0)  AS indicator FROM\n" +
-                "(SELECT \"1\" as ident, SUM(result) AS a  FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q43\" "+  stringFilter + ") AS a\n" +
-                "JOIN( SELECT \"1\" as ident, SUM(result) AS b  FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q31_t\" "+  stringFilter + ") AS b ON a.ident=b.ident \n" +
+                "(SELECT \"1\" as ident, SUM(result) AS a  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q43\" "+  stringFilter + ") AS a\n" +
+                "JOIN( SELECT \"1\" as ident, SUM(result) AS b  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q31_t\" "+  stringFilter + ") AS b ON a.ident=b.ident \n" +
                 "UNION\n" +
                 "SELECT  IFNULL(ROUND(CAST(a.a as FLOAT)/CAST(b.b as FLOAT)*100,1)  ||  \" Primary 3 students share each available reading textbook\", 0)  AS indicator FROM\n" +
-                "(SELECT \"1\" as ident, SUM(result) AS a  FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q44\" "+  stringFilter + ") AS a\n" +
-                "JOIN( SELECT \"1\" as ident, SUM(result) AS b  FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q32_t\" "+  stringFilter + ") AS b ON a.ident=b.ident \n" +
+                "(SELECT \"1\" as ident, SUM(result) AS a  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q44\" "+  stringFilter + ") AS a\n" +
+                "JOIN( SELECT \"1\" as ident, SUM(result) AS b  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q32_t\" "+  stringFilter + ") AS b ON a.ident=b.ident \n" +
                 "UNION\n" +
-                "SELECT \"Students can't take reading books or other resources home from school\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q47\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students can't take reading books or other resources home from school\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q47\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students don't have paper and pencils available at home\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q48\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"Students don't have paper and pencils available at home\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q48\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"An alphabet chart or alphabet strip is not displayed in the classroom\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q124\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"An alphabet chart or alphabet strip is not displayed in the classroom\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q124\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Letter tiles, letter flash cards, or word cards are not available in the classroom\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q125\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"Letter tiles, letter flash cards, or word cards are not available in the classroom\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q125\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Posters are not displayed on the wall in the classroom\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q126\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"Posters are not displayed on the wall in the classroom\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q126\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students' drawings or writing are not displayed on the walls in the classroom\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q127\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"Students' drawings or writing are not displayed on the walls in the classroom\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q127\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"There are not supplementary materials like big books, read-alouds, or student readers available in the classroom\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q128\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"There are not supplementary materials like big books, read-alouds, or student readers available in the classroom\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q128\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 ") WHERE indicator <> 0  GROUP BY indicator ORDER BY indicator";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);

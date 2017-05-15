@@ -46,6 +46,18 @@ public class DBFormsUtils {
         Cursor c = db.rawQuery("SELECT _id, displayName, displaySubtext, description, jrFormId, jrVersion, md5Hash, date , formMediaPath, formFilePath, language, submissionUri, base64RsaPublicKey, jrcacheFilePath FROM forms WHERE displayName like 'REACH%'",null);
         if (c != null) {
             data = ODKForms.getODKFormsFromCursor(c);
+            c.close();
+        }
+        db.close();
+        return data;
+    }
+
+    public List<ODKForms> getFormsVW() {
+        List<ODKForms> data = new ArrayList<ODKForms>();
+        SQLiteDatabase db = conn.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT _id, displayName, displaySubtext, description, jrFormId, jrVersion, md5Hash, date , formMediaPath, formFilePath, language, submissionUri, base64RsaPublicKey, jrcacheFilePath FROM forms WHERE displayName like 'WV%'",null);
+        if (c != null) {
+            data = ODKForms.getODKFormsFromCursor(c);
         }
         return data;
     }

@@ -4,11 +4,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Environment;
 
 import com.org.fhi360.m360wv.data.GraphInfo;
+import com.org.fhi360.m360wv.data.ODKForms;
+import com.org.fhi360.m360wv.data.ODKInstances;
+import com.org.fhi360.m360wv.utils.XMLParserInsertInformation;
+import com.org.fhi360.m360wv.utils.XMLParserschoolcode;
+
+import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,23 +56,6 @@ public class DBAnalyticsUtils {
         dbHelper = new DBAnalyticsHelper(context);
     }
 
-    public List<String> getAllSchoolCode (){
-        if (dbHelper == null) {
-            dbHelper = new DBAnalyticsHelper(context);
-        }
-        List<String> arreglo = new ArrayList<String>();
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String query = "Select school_code, count(*) from tblresults group by school_code";
-        Cursor c = db.rawQuery(query, null);
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            arreglo.add(c.getString(c.getColumnIndex("school_code")));
-            c.moveToNext();
-        }
-        c.close();;
-        db.close();
-        return arreglo;
-    }
     public void deleteIndicators() {
         if (dbHelper==null) {
             dbHelper = new DBAnalyticsHelper(context);
@@ -71,6 +63,55 @@ public class DBAnalyticsUtils {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL("Delete from " + TABLE_NAME);
         db.close();
+    }
+    public void deleteSyncforms(){
+        if (dbHelper == null) {
+            dbHelper = new DBAnalyticsHelper(context);
+        }
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("Delete from syncforms");
+        db.close();
+    }
+
+    public String getMacAddress() {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wInfo = wifiManager.getConnectionInfo();
+        String mac = wInfo.getMacAddress();
+        return mac;
+    }
+
+    public void insertSyncforms(String form_id, String form_name) {
+        if (dbHelper==null) {
+            dbHelper = new DBAnalyticsHelper(context);
+        }
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("INSERT INTO syncforms(form_id,form_name) VALUES('"+ form_id +"','" + form_name + "')");
+        db.close();
+    }
+
+    public void saveAllInstanceResults(DBInstanceUtils instanceConn, DBFormsUtils formsConn) throws IOException, XmlPullParserException {
+        List<ODKInstances> instances;
+        List<ODKForms> forms;
+        String xmlPath;
+        deleteSyncforms();
+        if (instanceConn == null) {
+            instanceConn = new DBInstanceUtils(context);
+        }
+        if (formsConn == null) {
+            formsConn = new DBFormsUtils(context);
+        }
+        forms = formsConn.getFormsVW();
+        for(ODKForms form:forms) {
+            instances = instanceConn.getInstances(form.getDisplayName());
+            for (ODKInstances instance: instances) {
+
+                insertSyncforms(instance.get_id()+"",form.getDisplayName());
+                xmlPath = instance.getInstanceFilePath();
+                String[] tmpPath = {xmlPath, form.getDisplayName(), getMacAddress(), "SCHool" };//Esto hay que cambiarlo por la shared preferences
+                XMLParserschoolcode.main(tmpPath);
+                XMLParserInsertInformation.main(tmpPath);
+            }
+        }
     }
 
     public boolean existTable(String tableName, String query) {
@@ -232,7 +273,6 @@ public class DBAnalyticsUtils {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            /*
             final String createTable = "create table " + TABLE_NAME + " ("
                     + CN_ID + " integer primary key autoincrement,"
                     + CN_INSTRUMENT + " text not null,"
@@ -247,7 +287,6 @@ public class DBAnalyticsUtils {
                     + CN_Iname + " text not null,"
                     + CN_Fname + " text not null);";
             db.execSQL(createTable);
-            */
         }
 
         @Override
@@ -270,5 +309,19 @@ public class DBAnalyticsUtils {
         return opcion;
     }
 
+    public List<String> getAllSchoolCodes() {
+        List<String> schoolCodes = null;
+        SQLiteDatabase dbAnalytics = dbHelper.getWritableDatabase();
+
+        Cursor cursor = dbAnalytics.rawQuery("SELECT school_code  FROM tblresults  GROUP BY school_code", null);
+
+        if (cursor.moveToFirst()) {
+            schoolCodes = new ArrayList<String>();
+            do {
+                schoolCodes.add(cursor.getString(cursor.getColumnIndex("school_code")));
+            } while (cursor.moveToNext());
+        }
+        return schoolCodes;
+    }
 
 }

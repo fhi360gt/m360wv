@@ -63,27 +63,27 @@ public class Reach_pg_sm_1 extends Fragment  {
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"There were unplanned school closures\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q15\" AND CAST(result AS INTEGER) > 0 "+  stringFilter + "\n" +
+                "SELECT \"There were unplanned school closures\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q15\" AND CAST(result AS INTEGER) > 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers not hired on time\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q11\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"Teachers not hired on time\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q11\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teachers not paid on time\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q8\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"Teachers not paid on time\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q8\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
                 "SELECT  IFNULL(ROUND(CAST(a.a as FLOAT)/CAST(b.b as FLOAT)*100,1)  || \" % teachers absent this week\", 0) AS indicator   FROM\n" +
-                "( SELECT \"1\" as ident, SUM(RESULT)/5 AS a   FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form in  (\"q76\",\"q77\",\"q78\",\"q79\",\"q80\") " + stringFilter + ") AS a\n" +
-                "JOIN (SELECT \"1\" as ident,  SUM(RESULT) AS b  FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form in  (\"q45\",\"q46\",\"q47\",\"q48\",\"q49\",\"q50\",\"q51\") " + stringFilter + " )  AS b ON  a.ident=b.ident \n" +
+                "( SELECT \"1\" as ident, SUM(RESULT)/5 AS a   FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form in  (\"q76\",\"q77\",\"q78\",\"q79\",\"q80\") " + stringFilter + ") AS a\n" +
+                "JOIN (SELECT \"1\" as ident,  SUM(RESULT) AS b  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form in  (\"q45\",\"q46\",\"q47\",\"q48\",\"q49\",\"q50\",\"q51\") " + stringFilter + " )  AS b ON  a.ident=b.ident \n" +
                 "UNION\n" +
                 "SELECT  IFNULL(ROUND(CAST(a.a as FLOAT)/CAST(b.b as FLOAT)*100,1)  || \" % of students absent this week\", 0) AS indicator FROM\n" +
-                "(SELECT \"1\" as ident, SUM(RESULT)/5 AS a  FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form in  (\"q67\",\"q68\",\"q69\",\"q70\",\"q71\") " + stringFilter + ") AS a\n" +
-                "JOIN( SELECT \"1\" as ident,   SUM(RESULT) AS b  FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form in  (\"q65\") " + stringFilter + ") AS b ON a.ident=b.ident \n" +
+                "(SELECT \"1\" as ident, SUM(RESULT)/5 AS a  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form in  (\"q67\",\"q68\",\"q69\",\"q70\",\"q71\") " + stringFilter + ") AS a\n" +
+                "JOIN( SELECT \"1\" as ident,   SUM(RESULT) AS b  FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form in  (\"q65\") " + stringFilter + ") AS b ON a.ident=b.ident \n" +
                 "UNION\n" +
-                "SELECT \"Teacher does not have record book\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q56\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"Teacher does not have record book\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q56\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Teacher does not have attendance record\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q64\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"Teacher does not have attendance record\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q64\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"School does not have functional PTA\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q143\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"School does not have functional PTA\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q143\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"There is not adult monitoring the school grounds\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_School_1\" AND var_form = \"q14\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
+                "SELECT \"There is not adult monitoring the school grounds\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[4].toString() + "\" AND var_form = \"q14\" AND CAST(result AS INTEGER) = 0"+  stringFilter + "\n" +
                 ") WHERE indicator <> 0 ORDER BY indicator";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);

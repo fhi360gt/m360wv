@@ -61,33 +61,33 @@ public class Reach_pg_nu_1 extends Fragment  {
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"There are students in your class who came to school hungry this past week\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q72\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"There are students in your class who came to school hungry this past week\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q72\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Most students come to school hungry\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q74\" AND CAST(result AS INTEGER) > 50 "+  stringFilter + "\n" +
+                "SELECT \"Most students come to school hungry\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q74\" AND CAST(result AS INTEGER) > 50 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students do not receive a morning snack at school\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q77\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students do not receive a morning snack at school\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q77\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students do not bring a morning snack from home\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q79\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students do not bring a morning snack from home\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q79\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students do not receive a lunch at school each day\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q73\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students do not receive a lunch at school each day\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q73\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students do not bring a lunch from home\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q75\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students do not bring a lunch from home\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q75\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Commodities do not arrive on time to prepare lunch\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q102\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Commodities do not arrive on time to prepare lunch\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q102\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Cooks do not come to the school to prepare lunch\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q102\" AND CAST(result AS INTEGER) = 2 "+  stringFilter + "\n" +
+                "SELECT \"Cooks do not come to the school to prepare lunch\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q102\" AND CAST(result AS INTEGER) = 2 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Lunch is not served due to lack of water\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q102\" AND CAST(result AS INTEGER) = 3 "+  stringFilter + "\n" +
+                "SELECT \"Lunch is not served due to lack of water\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q102\" AND CAST(result AS INTEGER) = 3 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Lunch is not served due to lack of cooking fuel\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q102\" AND CAST(result AS INTEGER) = 4 "+  stringFilter + "\n" +
+                "SELECT \"Lunch is not served due to lack of cooking fuel\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q102\" AND CAST(result AS INTEGER) = 4 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Lunch is not served due to lack of funding for food\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q102\" AND CAST(result AS INTEGER) = 5 "+  stringFilter + "\n" +
+                "SELECT \"Lunch is not served due to lack of funding for food\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q102\" AND CAST(result AS INTEGER) = 5 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Students' families do not contribute anything to the school for school meals\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q78\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Students' families do not contribute anything to the school for school meals\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q78\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Boys are served food before girls\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Director\" AND var_form = \"q103\" AND CAST(result AS INTEGER) = 2 "+  stringFilter + "\n" +
+                "SELECT \"Boys are served food before girls\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[2].toString() + "\" AND var_form = \"q103\" AND CAST(result AS INTEGER) = 2 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Boys and girls are not served the same amount of food\" AS indicator FROM  tblresults WHERE source_form =\"WV_REACH_Teacher\" AND var_form = \"q76\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Boys and girls are not served the same amount of food\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[6].toString() + "\" AND var_form = \"q76\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 ")   GROUP BY indicator ORDER BY indicator";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);

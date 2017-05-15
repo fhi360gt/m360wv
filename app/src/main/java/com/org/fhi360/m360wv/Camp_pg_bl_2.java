@@ -53,48 +53,47 @@ public class Camp_pg_bl_2 extends Fragment  {
         return mLinearLayout;
     }
 
-
     private void load_indicadores () {
         String stringFilter="";
         if (!school_code.equals("")){stringFilter = " AND school_code=\""+school_code+"\""; }
         Conexion cnfhi360 = new Conexion(getActivity(), STATICS_ROOT + File.separator + "analytics.db",null,4);
         SQLiteDatabase dbfhi360 = cnfhi360.getWritableDatabase(); // aqui debe ser solo lectura?
         String sql = "SELECT  indicator FROM (\n" +
-                "SELECT \"Not all steps of the reading camp curriculum were not followed\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q60\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Not all steps of the reading camp curriculum were not followed\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q60\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Low attendance  (could be overall, for girls / boys or a particular grade)\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q79\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Low attendance  (could be overall, for girls / boys or a particular grade)\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q79\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"High attendance\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q80\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"High attendance\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q80\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Space for the session was not safe\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q66\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Space for the session was not safe\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q66\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Children had insufficient access to books \" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q75\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Children had insufficient access to books \" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q75\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Poor time management\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q84\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Poor time management\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q84\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Lack of parental/ community support for Reading Camps\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q81\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Lack of parental/ community support for Reading Camps\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q81\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Space for the session was not comfortable  (eg very hot)\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q68\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Space for the session was not comfortable  (eg very hot)\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q68\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Materials with print were not displayed during the session\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q69\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"Materials with print were not displayed during the session\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q69\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Not enough *fun* activities were used\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q83\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Not enough *fun* activities were used\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q83\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Facilitator did not engage boys and girls equally\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q85\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Facilitator did not engage boys and girls equally\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q85\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Space for the session had too many distractions from the surrounding environment\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q93\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Space for the session had too many distractions from the surrounding environment\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q93\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Some or all children did not have materials for journalling\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q76\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Some or all children did not have materials for journalling\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q76\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Facilitator needs utilise different strategies / approaches to encourage children's higher order reading comprehension skills\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q82\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Facilitator needs utilise different strategies / approaches to encourage children's higher order reading comprehension skills\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q82\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Lack of materials for make & take\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q78\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Lack of materials for make & take\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q78\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"There was no record of books being borrowed or returned\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q74\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
+                "SELECT \"There was no record of books being borrowed or returned\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q74\" AND CAST(result AS INTEGER) = 0 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Lack of pens/pencils\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q77\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
+                "SELECT \"Lack of pens/pencils\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q77\" AND CAST(result AS INTEGER) = 1 "+  stringFilter + "\n" +
                 "UNION\n" +
-                "SELECT \"Text typed by observer on challenges observed is displayed here\" AS indicator FROM  tblresults WHERE source_form =\"WV_Boost_Camp\" AND var_form = \"q86\"  "+  stringFilter + "\n" +
+                "SELECT \"Text typed by observer on challenges observed is displayed here\" AS indicator FROM  tblresults WHERE source_form =\""+ main_v3.listForms[1].toString() + "\" AND var_form = \"q86\"  "+  stringFilter + "\n" +
                 ")   GROUP BY indicator ORDER BY indicator\n";
 
         Cursor cursor_indicadores = dbfhi360.rawQuery(sql,null);
